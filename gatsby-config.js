@@ -10,6 +10,18 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-plugin-module-resolver',
+      options: {
+        root: './src',
+        // aliases: {
+        //   // static: {
+        //   //   root: './public', // <- will used as this alias' root dir
+        //   //   alias: './static' // <- will become ./public/static
+        //   // }
+        // }
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
