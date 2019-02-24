@@ -1,4 +1,4 @@
-const TITLE = `Commented.tech`;
+const TITLE = `Commented`;
 const AUTHOR = `Tom Gallacher`;
 
 module.exports = {
@@ -14,7 +14,11 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: 'Roboto',
+            family: 'Maven Pro',
+            variants: ['700'],
+          },
+          {
+            family: 'Montserrat',
             variants: ['400', '700'],
           },
         ],
