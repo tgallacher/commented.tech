@@ -1,26 +1,14 @@
-const TITLE = `Another Blog`;
+const TITLE = `Commented.tech`;
 const AUTHOR = `Tom Gallacher`;
 
 module.exports = {
   siteMetadata: {
     title: TITLE,
     author: AUTHOR,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://tgallacher.github.io/`,
+    description: 'A place for my personal brain dumps, comments, and thoughts',
+    siteUrl: `https://commented.tech/`,
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-module-resolver',
-      options: {
-        root: './src',
-        // aliases: {
-        //   // static: {
-        //   //   root: './public', // <- will used as this alias' root dir
-        //   //   alias: './static' // <- will become ./public/static
-        //   // }
-        // }
-      },
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -67,12 +55,12 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: TITLE,
-        short_name: `GatsbyJS`,
+        short_name: `Commented.tech`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `${__dirname}/content/assets/gatsby-icon.png`,
       },
     },
     `gatsby-plugin-emotion`,
@@ -82,11 +70,5 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-force-trailing-slashes`,
     `gatsby-plugin-offline`,
-    // {
-    //   resolve: `gatsby-plugin-typography`,
-    //   options: {
-    //     pathToConfigModule: `src/utils/typography`,
-    //   },
-    // },
   ],
 };
