@@ -2,6 +2,7 @@ module.exports = {
   plugins: [
     'babel-plugin-emotion',
     '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-syntax-dynamic-import',
     [
       'babel-plugin-module-resolver',
       {
