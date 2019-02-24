@@ -1,16 +1,29 @@
 import React from 'react';
+import { css } from '@emotion/core';
+import Container from 'components/Container';
 
 const Footer = () => (
-  <footer>
-    &copy; {new Date().getFullYear()} Tom Gallacher
-    <a
-      href="//github.com/tgallacher"
-      rel="noopener noreferrer"
-      title="See what i'm up to on Github"
-      target="_blank"
-    >
-      Github
-    </a>
+  <footer
+    css={css`
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5em;
+      background: #263238;
+    `}
+  >
+    <Container>
+      &copy; {new Date().getFullYear()} Tom Gallacher
+      <a
+        href="//github.com/tgallacher"
+        rel="noopener noreferrer"
+        title="Github profile"
+        target="_blank"
+      >
+        Github
+      </a>
+    </Container>
   </footer>
 );
 

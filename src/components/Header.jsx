@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { css } from '@emotion/core';
 
+import Container from 'components/Container';
+
 function Header({ location, title }) {
   const rootPath = `${__PATH_PREFIX__}/`;
 
@@ -10,19 +12,14 @@ function Header({ location, title }) {
     margin-bottom: 1.5em;
     margin-top: 0;
   `;
-  const linkStyles = css`
-    box-shadow: none;
-    text-decoration: none;
-    color: inherit;
-  `;
 
   return (
     <header>
-      <HeadingTag css={headerStyling}>
-        <Link css={linkStyles} to="/">
-          {title}
-        </Link>
-      </HeadingTag>
+      <Container>
+        <HeadingTag css={headerStyling}>
+          <Link to="/">{title}</Link>
+        </HeadingTag>
+      </Container>
     </header>
   );
 }

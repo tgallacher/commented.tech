@@ -7,6 +7,7 @@ import Header from './Header';
 const globalStyles = css`
   html {
     font-size: 16px;
+    border-top: 3px solid #ff4081;
   }
   body {
     font-family: 'Montserrat', sans-serif;
@@ -14,7 +15,6 @@ const globalStyles = css`
     line-height: 1.25;
     font-size: 100%;
     background-color: #263238;
-    ${'' /* background-color: #303035; */}
     color: #e2e2e2;
   }
   h1,
@@ -32,16 +32,16 @@ const globalStyles = css`
   }
   a {
     color: #ff4081;
-    ${'' /* color: #BEAB65; */}
+
+    :hover {
+      color: #ff6fa0;
+    }
   }
 `;
 
 function Layout({ children, ...props }) {
   const layoutStyling = css`
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 40em;
-    padding: 2em;
+    ${'' /* padding: 0em; */}
   `;
 
   return (

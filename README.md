@@ -1,3 +1,8 @@
+# Material UI Colors
+
+Accent: A200 pink
+Background: 900 blue grey
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
