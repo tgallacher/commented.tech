@@ -1,70 +1,27 @@
 import React from 'react';
 import { Link } from 'gatsby';
-
+import { css } from '@emotion/core';
 import Footer from './Footer';
+import Header from './Header';
 
-class Layout extends React.Component {
-  render() {
-    const { location, title, children } = this.props;
-    const rootPath = `${__PATH_PREFIX__}/`;
-    let header;
+function Layout({ children, ...props }) {
+  const layoutStyling = css`
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 24em;
+    padding: 2em;
+  `;
+  const globalStyles = css`
+    font-family: 'Roboto', 'sans-serif';
+  `;
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            marginBottom: '1.5em',
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      );
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to="/"
-          >
-            {title}
-          </Link>
-        </h3>
-      );
-    }
-    return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: '24em',
-          padding: '2em',
-        }}
-      >
-        {header}
-        {children}
-        <Footer />
-      </div>
-    );
-  }
+  return (
+    <main css={layoutStyling}>
+      <Header {...props} />
+      {children}
+      <Footer {...props} />
+    </main>
+  );
 }
 
 export default Layout;
