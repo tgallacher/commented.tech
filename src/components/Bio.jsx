@@ -1,42 +1,7 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
-
-function Bio() {
-  return (
-    <StaticQuery
-      query={bioQuery}
-      render={data => {
-        const { author } = data.site.siteMetadata;
-        return (
-          <div
-            style={{
-              display: `flex`,
-              marginBottom: '2.5em',
-            }}
-          >
-            <Image
-              fixed={data.avatar.childImageSharp.fixed}
-              alt={author}
-              style={{
-                marginRight: '0.5em',
-                marginBottom: 0,
-                minWidth: 50,
-                borderRadius: `100%`,
-              }}
-              imgStyle={{
-                borderRadius: `50%`,
-              }}
-            />
-            <p>
-              Written by <strong>{author}</strong>.
-            </p>
-          </div>
-        );
-      }}
-    />
-  );
-}
+import { css } from '@emotion/core';
 
 const bioQuery = graphql`
   query BioQuery {
@@ -54,5 +19,40 @@ const bioQuery = graphql`
     }
   }
 `;
+
+function Bio({ data }) {
+  const imgWrapperStyles = css`
+    display: flex;
+    margin-bottom: 2.5em;
+  `;
+  const imgStyles = css`
+    margin-right: 0.5em;
+    margin-bottom: 0;
+    min-width: 50px;
+    border-radius: 100%;
+    background-color: #0f0;
+  `;
+
+  return (
+    <StaticQuery query={bioQuery}>
+      {data => {
+        const { author } = data.site.siteMetadata;
+
+        return (
+          <div css={imgWrapperStyles}>
+            <Image
+              alt={author}
+              css={imgStyles}
+              fixed={data.avatar.childImageSharp.fixed}
+            />
+            <p>
+              By <strong>{author}</strong>.
+            </p>
+          </div>
+        );
+      }}
+    </StaticQuery>
+  );
+}
 
 export default Bio;
