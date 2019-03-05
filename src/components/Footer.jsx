@@ -5,10 +5,6 @@ import Container from 'components/Container';
 const Footer = () => (
   <footer
     css={css`
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
       padding: 0.5em;
       background: #263238;
     `}
