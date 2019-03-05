@@ -46,7 +46,7 @@ function Bio({ data }) {
               fixed={data.avatar.childImageSharp.fixed}
             />
             <p>
-              By <strong>{author}</strong>.
+              By <em>{author}</em>.
             </p>
           </div>
         );

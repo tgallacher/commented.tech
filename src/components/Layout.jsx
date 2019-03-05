@@ -40,12 +40,8 @@ const globalStyles = css`
 `;
 
 function Layout({ children, ...props }) {
-  const layoutStyling = css`
-    ${'' /* padding: 0em; */}
-  `;
-
   return (
-    <main css={layoutStyling}>
+    <main>
       <Global styles={globalStyles} />
       <Header {...props} />
       {children}
