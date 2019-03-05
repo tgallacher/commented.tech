@@ -20,7 +20,7 @@ const bioQuery = graphql`
   }
 `;
 
-function Bio({ data }) {
+function Bio({ data, className }) {
   const imgWrapperStyles = css`
     display: flex;
     margin-bottom: 2.5em;
@@ -39,7 +39,7 @@ function Bio({ data }) {
         const { author } = data.site.siteMetadata;
 
         return (
-          <div css={imgWrapperStyles}>
+          <div css={imgWrapperStyles} className={className}>
             <Image
               alt={author}
               css={imgStyles}
