@@ -7,7 +7,7 @@ import Header from './Header';
 const globalStyles = css`
   html {
     font-size: 16px;
-    border-top: 3px solid #ff4081;
+    border-top: 3px solid #e64a19;
   }
   body {
     font-family: 'Montserrat', sans-serif;
@@ -31,10 +31,10 @@ const globalStyles = css`
     }
   }
   a {
-    color: #ff4081;
+    color: #ff5722;
 
     :hover {
-      color: #ff6fa0;
+      color: #e64a19;
     }
   }
 `;
