@@ -41,7 +41,12 @@ const globalStyles = css`
 
 function Layout({ children, ...props }) {
   return (
-    <main>
+    <main
+      css={css`
+        max-width: 40em;
+        margin: 0 auto;
+      `}
+    >
       <Global styles={globalStyles} />
       <Header {...props} />
       {children}

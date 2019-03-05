@@ -13,9 +13,7 @@ function PostEntrySummary({ post }) {
     }
   `;
   const innerWrapperStyles = css`
-    max-width: 40em; /* TODO: centralise this */
     padding: 0.25em;
-    margin: 0 auto;
   `;
   const headingStyles = css`
     margin-bottom: 0.1em;
