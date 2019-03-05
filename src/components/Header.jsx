@@ -10,7 +10,7 @@ function Header({ location, title }) {
   const HeadingTag = location.pathname === rootPath ? 'h1' : 'h3';
   const headerStyling = css`
     margin-bottom: 1.5em;
-    margin-top: 0;
+    margin-top: ${HeadingTag === 'h1' ? '0' : '0.25em'};
   `;
 
   return (
