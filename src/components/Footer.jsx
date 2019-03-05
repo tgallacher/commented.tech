@@ -20,6 +20,9 @@ const Footer = () => (
         rel="noopener noreferrer"
         title="Github profile"
         target="_blank"
+        css={css`
+          margin-left: 0.5em;
+        `}
       >
         Github
       </a>
