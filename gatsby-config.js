@@ -1,4 +1,4 @@
-const TITLE = `Commented`;
+const TITLE = `Commented.tech`;
 const AUTHOR = `Tom Gallacher`;
 
 module.exports = {
