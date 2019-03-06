@@ -1,12 +1,13 @@
 const TITLE = `Commented.tech`;
 const AUTHOR = `Tom Gallacher`;
+const SITE_URL = `https://commented.tech`;
 
 module.exports = {
   siteMetadata: {
     title: TITLE,
     author: AUTHOR,
-    description: 'A place for my personal brain dumps, comments, and thoughts',
-    siteUrl: `https://commented.tech/`,
+    description: 'Personal ramblings, comments, and thoughts',
+    siteUrl: SITE_URL,
   },
   plugins: [
     {
@@ -88,6 +89,21 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `${__dirname}/content/assets/gatsby-icon.png`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: SITE_URL,
+        sitemap: `${SITE_URL}/sitemap.xml`,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }],
+          },
+        },
       },
     },
     `gatsby-plugin-emotion`,
