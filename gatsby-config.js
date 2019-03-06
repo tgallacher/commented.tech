@@ -72,12 +72,12 @@ module.exports = {
         ],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     //trackingId: `ADD YOUR TRACKING ID HERE`,
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.NODE_ENV === 'production' && 'UA-135750116-1',
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
