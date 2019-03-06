@@ -5,7 +5,7 @@ import { lighten } from 'polished';
  */
 const PRIMARY_COLOR_LIGHT = '#CFD8DC';
 const PRIMARY_COLOR = '#607D8B';
-const PRIMARY_COLOR_DARK = '#455A64';
+const PRIMARY_COLOR_DARK = '#263238';
 const TEXT_ICONS_COLOR = '#FFFFFF';
 
 const ACCENT_COLOR = '#FF5722';
@@ -23,12 +23,12 @@ export const globalStyles = css`
   }
 
   body {
-    font-family: 'Montserrat', sans - serif;
+    font-family: 'Montserrat', 'sans-serif';
     font-weight: 400;
     line-height: 1.25;
-    font-size: 100 %;
-    background-color: #263238;
-    color: #e2e2e2;
+    font-size: 100%;
+    background-color: ${PRIMARY_COLOR_DARK};
+    color: ${TEXT_ICONS_COLOR};
   }
 
   h1,
@@ -37,7 +37,7 @@ export const globalStyles = css`
   h4,
   h5,
   h6 {
-    font-family: 'Maven Pro', sans-serif;
+    font-family: 'Maven Pro', 'sans-serif';
     font-weight: 700;
 
     a {
@@ -51,6 +51,17 @@ export const globalStyles = css`
     &:hover {
       color: ${lighten(0.1, ACCENT_COLOR)};
     }
+  }
+
+  blockquote {
+    margin: 0 0 1.75rem 0;
+    padding: 0 0 0 1.42188rem;
+    line-height: 1.75rem;
+    color: inherit;
+    font-style: italic;
+    border-left: 0.32813rem solid hsla(0, 0%, 0%, 0.9);
+    border-left-color: inherit;
+    opacity: 0.8;
   }
 `;
 
