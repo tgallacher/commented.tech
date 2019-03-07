@@ -14,17 +14,25 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allFile(
+      filter: { extension: { eq: "md" } }
+      sort: { fields: [birthTime], order: DESC }
+    ) {
       edges {
         node {
-          timeToRead
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
+          birthTime(formatString: "Do MMM, YYYY")
+          modifiedTime(formatString: "Do MMM, YYYY")
+          childMarkdownRemark {
+            excerpt
+            fields {
+              slug
+              readingTime {
+                text
+              }
+            }
+            frontmatter {
+              title
+            }
           }
         }
       }
@@ -34,7 +42,7 @@ export const pageQuery = graphql`
 
 function BlogIndex({ data, location }) {
   const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMarkdownRemark.edges;
+  const posts = data.allFile.edges;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -48,7 +56,7 @@ function BlogIndex({ data, location }) {
       </Container>
 
       {posts.map(({ node }) => (
-        <PostSummary key={node.fields.slug} post={node} />
+        <PostSummary key={node.childMarkdownRemark.fields.slug} post={node} />
       ))}
     </Layout>
   );

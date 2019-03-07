@@ -3,7 +3,9 @@ import { css } from '@emotion/core';
 import { Link } from 'gatsby';
 
 function PostEntrySummary({ post }) {
-  const title = post.frontmatter.title || post.fields.slug;
+  const title =
+    post.childMarkdownRemark.frontmatter.title ||
+    post.childMarkdownRemark.fields.slug;
 
   const articleStyles = css`
     margin-bottom: 0.5em;
@@ -23,7 +25,7 @@ function PostEntrySummary({ post }) {
     <article css={articleStyles}>
       <div css={innerWrapperStyles}>
         <h3 css={headingStyles}>
-          <Link to={post.fields.slug}>{title}</Link>
+          <Link to={post.childMarkdownRemark.fields.slug}>{title}</Link>
         </h3>
 
         <small
@@ -31,11 +33,56 @@ function PostEntrySummary({ post }) {
             font-style: italic;
           `}
         >
-          {post.timeToRead} mins &#9679;&nbsp;
-          {post.frontmatter.date}
+          <span
+            css={css`
+              display: inline-block;
+              margin-right: 0.5em;
+            `}
+          >
+            {post.childMarkdownRemark.fields.readingTime.text}
+          </span>
+          &#9679;
+          <span
+            css={css`
+              display: inline-block;
+              margin-right: 0.5em;
+              margin-left: 0.5em;
+            `}
+          >
+            <i
+              css={css`
+                margin-right: 0.25em;
+              `}
+              className="far fa-clock"
+            />
+            {post.birthTime}
+          </span>
+          {post.birthTime !== post.modifiedTime && (
+            <React.Fragment>
+              &#9679;
+              <span
+                css={css`
+                  display: inline-block;
+                  margin-left: 0.5em;
+                `}
+              >
+                <i
+                  css={css`
+                    margin-right: 0.25em;
+                  `}
+                  className="far fa-edit"
+                />
+                {post.modifiedTime}
+              </span>
+            </React.Fragment>
+          )}
         </small>
 
-        <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+        <p
+          dangerouslySetInnerHTML={{
+            __html: post.childMarkdownRemark.excerpt,
+          }}
+        />
       </div>
     </article>
   );

@@ -48,6 +48,7 @@
     "gatsby-remark-external-links": "^0.0.4",
     "gatsby-remark-images": "3",
     "gatsby-remark-prismjs": "^3.0.0",
+    "gatsby-remark-reading-time": "^1.0.1",
     "gatsby-remark-responsive-iframe": "^2.0.5",
     "gatsby-remark-smartypants": "^2.0.5",
     "gatsby-source-filesystem": "^2.0.2",
@@ -63,7 +64,9 @@
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2"
+  },
   "keywords": [
     "gatsby"
   ],
