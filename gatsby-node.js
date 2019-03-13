@@ -37,6 +37,9 @@ const createPages = ({ graphql, actions }) => {
               fields {
                 slug
               }
+              frontmatter {
+                title
+              }
             }
           }
         }
