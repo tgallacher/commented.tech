@@ -15,20 +15,9 @@
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
   },
   "bugs": {
-    "url": "https://github.com/tgallacher/tgallacher.github.io/issues"
+    "url": "https://github.com/tgallacher/commented.tech/issues"
   },
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@emotion/babel-preset-css-prop": "^10.0.7",
-    "@emotion/core": "^10.0.7",
-    "babel-eslint": "^10.0.1",
-    "babel-plugin-module-resolver": "^3.1.3",
-    "eslint": "^5.12.1",
-    "eslint-config-prettier": "^3.6.0",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.11.1",
     "gatsby": "^2.0.76",
     "gatsby-image": "^2.0.22",
     "gatsby-plugin-emotion": "^4.0.1",
@@ -42,7 +31,6 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-robots-txt": "^1.4.0",
     "gatsby-plugin-sharp": "^2.0.6",
-    "gatsby-plugin-typography": "^2.2.0",
     "gatsby-remark-autolink-headers": "^2.0.15",
     "gatsby-remark-copy-linked-files": "^2.0.5",
     "gatsby-remark-external-links": "^0.0.4",
@@ -54,18 +42,29 @@
     "gatsby-source-filesystem": "^2.0.2",
     "gatsby-transformer-remark": "^2.1.6",
     "gatsby-transformer-sharp": "^2.1.3",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.0",
-    "normalize.css": "^8.0.1",
-    "polished": "^3.0.3",
-    "prettier": "^1.14.2",
-    "prismjs": "^1.15.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.7.2"
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@emotion/babel-preset-css-prop": "^10.0.7",
+    "@emotion/core": "^10.0.7",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-module-resolver": "^3.1.3",
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^3.6.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.0",
+    "normalize.css": "^8.0.1",
+    "polished": "^3.0.3",
+    "prettier": "^1.14.2",
+    "prismjs": "^1.15.0"
   },
   "keywords": [
     "gatsby"
