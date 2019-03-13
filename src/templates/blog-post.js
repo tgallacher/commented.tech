@@ -16,13 +16,16 @@ export const pageQuery = graphql`
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
       html
-      timeToRead
+      excerpt(pruneLength: 160)
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "Do MMM, YYYY")
+      }
+      fields {
+        readingTime {
+          text
+        }
       }
     }
   }
@@ -54,7 +57,19 @@ function BlogPostTemplate({ data, location, pageContext }) {
               color: #757575;
             `}
           >
-            {post.timeToRead} mins &#9679;&nbsp;
+            <i
+              className="fas fa-book-open"
+              css={css`
+                margin-right: 0.5em;
+              `}
+            />
+            {post.fields.readingTime.text} &#9679;&nbsp;
+            <i
+              className="far fa-clock"
+              css={css`
+                margin-right: 0.5em;
+              `}
+            />
             {post.frontmatter.date}
           </div>
         </header>
