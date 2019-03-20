@@ -1,6 +1,6 @@
 ---
 title: Simple and Effective Redux Actions
-date: '2019-03-22'
+date: '2019-03-20'
 labels: redux
 ---
 
