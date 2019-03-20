@@ -12,6 +12,18 @@ const Footer = () => (
     <Container>
       &copy; {new Date().getFullYear()} Tom Gallacher
       <a
+        href="//twitter.com/tom_gallacher"
+        rel="noopener noreferrer"
+        title="Twitter profile"
+        target="_blank"
+        css={css`
+          margin: 0 0.5em;
+        `}
+      >
+        Twitter
+      </a>
+      /
+      <a
         href="//github.com/tgallacher"
         rel="noopener noreferrer"
         title="Github profile"
