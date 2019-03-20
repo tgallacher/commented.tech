@@ -15,8 +15,12 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: 'Maven Pro',
+            family: 'Roboto',
             variants: ['700'],
+          },
+          {
+            family: 'Cutive Mono',
+            variants: ['400'],
           },
           {
             family: 'Montserrat',

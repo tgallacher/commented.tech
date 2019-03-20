@@ -25,7 +25,7 @@ export const globalStyles = css`
   body {
     font-family: 'Montserrat', 'sans-serif';
     font-weight: 400;
-    line-height: 1.25;
+    line-height: 1.65;
     font-size: 100%;
     background-color: ${PRIMARY_COLOR_DARK};
     color: ${TEXT_ICONS_COLOR};
@@ -37,7 +37,8 @@ export const globalStyles = css`
   h4,
   h5,
   h6 {
-    font-family: 'Maven Pro', 'sans-serif';
+    font-family: 'Roboto', 'sans-serif';
+    ${'' /* font-family: 'Maven Pro', 'sans-serif'; */}
     font-weight: 700;
 
     a {
@@ -62,6 +63,14 @@ export const globalStyles = css`
     border-left: 0.32813rem solid hsla(0, 0%, 0%, 0.9);
     border-left-color: inherit;
     opacity: 0.8;
+  }
+
+  :not(pre) > code[class*='language-text'] {
+    font-family: 'Cutive Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
+      monospace;
+    background: #d7d58a;
+    color: black;
+    text-shadow: none;
   }
 `;
 
