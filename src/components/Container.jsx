@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
 `;
 
 const Container = props => (
-  <StyledContainer maxWidth="34em" mx={[2, 'auto']} {...props} />
+  <StyledContainer maxWidth="44em" mx={[2, 'auto']} {...props} />
 );
 
 export default Container;
