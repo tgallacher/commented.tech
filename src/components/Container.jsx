@@ -1,17 +1,16 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { maxWidth, space, width } from 'styled-system';
 
-function Container({ children }) {
-  return (
-    <div
-      css={css`
-        max-width: 40em;
-        margin: 0 auto;
-      `}
-    >
-      {children}
-    </div>
-  );
-}
+const StyledContainer = styled.div`
+  ${maxWidth}
+  ${space}
+  ${width}
+`;
+
+const Container = props => (
+  <StyledContainer maxWidth="34em" mx={[2, 'auto']} {...props} />
+);
 
 export default Container;

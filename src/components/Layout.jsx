@@ -1,23 +1,22 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { Global, css } from '@emotion/core';
+import { Global } from '@emotion/core';
 
 import { globalStyles, gatsbyHighlight } from '../styles';
 import Footer from './Footer';
 import Header from './Header';
+import Container from './Container';
 
 function Layout({ children, ...props }) {
   return (
-    <main
-      css={css`
-        max-width: 40em;
-        margin: 0 auto;
-      `}
-    >
+    <main>
       <Global styles={[globalStyles, gatsbyHighlight]} />
-      <Header {...props} />
-      {children}
-      <Footer {...props} />
+
+      <Container>
+        <Header {...props} />
+        {children}
+        <Footer {...props} />
+      </Container>
     </main>
   );
 }

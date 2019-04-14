@@ -1,7 +1,8 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
-import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { space, minWidth, display, borderRadius } from 'styled-system';
 
 const bioQuery = graphql`
   query BioQuery {
@@ -20,39 +21,40 @@ const bioQuery = graphql`
   }
 `;
 
-function Bio({ data, className }) {
-  const imgWrapperStyles = css`
-    display: flex;
-    margin-bottom: 2.5em;
-  `;
-  const imgStyles = css`
-    margin-right: 0.5em;
-    margin-bottom: 0;
-    min-width: 50px;
-    border-radius: 100%;
-    background-color: #0f0;
-  `;
+const StyledImg = styled(Image)`
+  ${space}
+  ${minWidth}
+  ${display}
+  ${borderRadius}
+`;
 
-  return (
-    <StaticQuery query={bioQuery}>
-      {data => {
-        const { author } = data.site.siteMetadata;
+const Wrapper = styled.div`
+  ${display}
+  ${space}
+`;
 
-        return (
-          <div css={imgWrapperStyles} className={className}>
-            <Image
-              alt={author}
-              css={imgStyles}
-              fixed={data.avatar.childImageSharp.fixed}
-            />
-            <p>
-              By <em>{author}</em>.
-            </p>
-          </div>
-        );
-      }}
-    </StaticQuery>
-  );
-}
+const Bio = ({ data, className }) => (
+  <StaticQuery query={bioQuery}>
+    {data => {
+      const { author } = data.site.siteMetadata;
+
+      return (
+        <Wrapper display="flex" mb={4} className={className}>
+          <StyledImg
+            borderRadius="100%"
+            minWidth={50}
+            fixed={data.avatar.childImageSharp.fixed}
+            alt={author}
+            mr={2}
+            mb={0}
+          />
+          <p>
+            By <em>{author}</em>.
+          </p>
+        </Wrapper>
+      );
+    }}
+  </StaticQuery>
+);
 
 export default Bio;

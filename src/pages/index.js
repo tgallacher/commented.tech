@@ -48,9 +48,7 @@ function BlogIndex({ data, location }) {
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
 
-      <Container>
-        <Bio />
-      </Container>
+      <Bio />
 
       {posts.map(({ node }) => (
         <PostSummary key={node.fields.slug} post={node} />

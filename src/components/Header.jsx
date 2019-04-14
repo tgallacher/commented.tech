@@ -1,27 +1,26 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { space } from 'styled-system';
 
-import Container from 'components/Container';
+let Title = styled.h1`
+  ${space}
+`;
 
-function Header({ location, title }) {
-  const rootPath = `${__PATH_PREFIX__}/`;
+const Header = ({ location, title }) => {
+  // `__PATH_PREFIX__` comes from Gatsby.?
+  const isRoot = location.pathname === `${__PATH_PREFIX__}/`;
+  const marginTop = isRoot ? 0 : 1;
 
-  const HeadingTag = location.pathname === rootPath ? 'h1' : 'h3';
-  const headerStyling = css`
-    margin-bottom: 1.5em;
-    margin-top: ${HeadingTag === 'h1' ? '0' : '0.25em'};
-  `;
+  Title = Title.withComponent(isRoot ? 'h1' : 'h3');
 
   return (
     <header>
-      <Container>
-        <HeadingTag css={headerStyling}>
-          <Link to="/">{title}</Link>
-        </HeadingTag>
-      </Container>
+      <Title mb={4} mt={marginTop}>
+        <Link to="/">{title}</Link>
+      </Title>
     </header>
   );
-}
+};
 
 export default Header;
