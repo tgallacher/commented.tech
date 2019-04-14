@@ -1,52 +1,44 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { Link } from 'gatsby';
+import styled from '@emotion/styled';
+import { space, display } from 'styled-system';
 
-function PostEntrySummary({ post }) {
+const Article = styled.article`
+  ${space}
+`;
+
+const InnerWrapper = Article.withComponent('div');
+
+const H3 = styled.h3`
+  ${space}
+`;
+
+const Metadata = styled.small`
+  font-style: italic;
+`;
+
+const Span = styled.span`
+  ${display}
+  ${space}
+`;
+
+const PostEntrySummary = ({ post }) => {
   const title = post.frontmatter.title || post.fields.slug;
 
-  const articleStyles = css`
-    margin-bottom: 0.5em;
-
-    @media (min-width: 767px) {
-      margin-bottom: 0em;
-    }
-  `;
-  const innerWrapperStyles = css`
-    padding: 0.25em;
-  `;
-  const headingStyles = css`
-    margin-bottom: 0.1em;
-  `;
-
   return (
-    <article css={articleStyles}>
-      <div css={innerWrapperStyles}>
-        <h3 css={headingStyles}>
+    <Article mb={[3, 0]}>
+      <InnerWrapper p={2}>
+        <H3 mb={1}>
           <Link to={post.fields.slug}>{title}</Link>
-        </h3>
+        </H3>
 
-        <small
-          css={css`
-            font-style: italic;
-          `}
-        >
-          <span
-            css={css`
-              display: inline-block;
-              margin-right: 0.5em;
-            `}
-          >
+        <Metadata>
+          <Span display="inline-block" mr={2}>
             {post.fields.readingTime.text}
-          </span>
+          </Span>
           &#9679;
-          <span
-            css={css`
-              display: inline-block;
-              margin-right: 0.5em;
-              margin-left: 0.5em;
-            `}
-          >
+          <Span display="inline-block" mx={2}>
             <i
               css={css`
                 margin-right: 0.25em;
@@ -54,17 +46,13 @@ function PostEntrySummary({ post }) {
               className="far fa-clock"
             />
             {post.frontmatter.date}
-          </span>
-        </small>
+          </Span>
+        </Metadata>
 
-        <p
-          dangerouslySetInnerHTML={{
-            __html: post.excerpt,
-          }}
-        />
-      </div>
-    </article>
+        <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+      </InnerWrapper>
+    </Article>
   );
-}
+};
 
 export default PostEntrySummary;
