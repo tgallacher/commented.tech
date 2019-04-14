@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { space, borders } from 'styled-system';
 
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
 import PostPagination from 'components/PostPagination';
+import PostMeta from 'components/PostMeta';
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -31,7 +34,16 @@ export const pageQuery = graphql`
   }
 `;
 
-function BlogPostTemplate({ data, location, pageContext }) {
+const Header = styled.header`
+  ${space}
+`;
+
+const Footer = styled.footer`
+  ${space}
+  ${borders}
+`;
+
+const BlogPostTemplate = ({ data, location, pageContext }) => {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
 
@@ -49,48 +61,25 @@ function BlogPostTemplate({ data, location, pageContext }) {
           }
         `}
       >
-        <header>
+        <Header mb={5}>
           <h1>{post.frontmatter.title}</h1>
-          <div
-            css={css`
-              margin-bottom: 3em;
-              color: #757575;
-            `}
-          >
-            <i
-              className="fas fa-book-open"
-              css={css`
-                margin-right: 0.5em;
-              `}
-            />
-            {post.fields.readingTime.text} &#9679;&nbsp;
-            <i
-              className="far fa-clock"
-              css={css`
-                margin-right: 0.5em;
-              `}
-            />
-            {post.frontmatter.date}
-          </div>
-        </header>
+          <PostMeta
+            readingTime={post.fields.readingTime.text}
+            postDate={post.frontmatter.date}
+            color="#757575"
+            as="p"
+          />
+        </Header>
+
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
-        <footer
-          css={css`
-            margin-top: 2em;
-            border-top: 1px solid #455a64;
-          `}
-        >
+        <Footer mt={4} borderTop="1px solid #455a64">
           <PostPagination pageContext={pageContext} />
-          <Bio
-            css={css`
-              margin: 4em 0;
-            `}
-          />
-        </footer>
+          <Bio />
+        </Footer>
       </article>
     </Layout>
   );
-}
+};
 
 export default BlogPostTemplate;
