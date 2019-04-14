@@ -68,9 +68,9 @@ export const globalStyles = css`
   :not(pre) > code[class*='language-text'] {
     font-family: 'Cutive Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
       monospace;
+    text-shadow: none;
     background: #d7d58a;
     color: black;
-    text-shadow: none;
   }
 `;
 
@@ -89,7 +89,6 @@ export const gatsbyHighlight = css`
 
     &.line-numbers {
       padding: 0.5em 0 0.5em 2.8em;
-      overflow: initial;
     }
 
     & > .line-numbers-rows {
