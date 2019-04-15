@@ -2,14 +2,16 @@ import { css } from '@emotion/core';
 import { lighten } from 'polished';
 /**
  * Palette colors
+ *
+ * @see https://coolors.co/ffffff-00171f-003459-007ea7-51bfe2
  */
-const PRIMARY_COLOR_LIGHT = '#CFD8DC';
-const PRIMARY_COLOR = '#607D8B';
-const PRIMARY_COLOR_DARK = '#263238';
+const PRIMARY_COLOR_LIGHT = '#51BFE2';
+const PRIMARY_COLOR = '#007EA7';
+const PRIMARY_COLOR_DARK = '#00171F';
 const TEXT_ICONS_COLOR = '#FFFFFF';
 
-const ACCENT_COLOR = '#FF5722';
-const PRIMARY_TEXT_COLOR = '#212121';
+const ACCENT_COLOR = '#51BFE2';
+const PRIMARY_TEXT_COLOR = '#FFFFFF';
 const SECONDARY_TEXT_COLOR = '#757575';
 const DIVIDER_COLOR = '#BDBDBD';
 
