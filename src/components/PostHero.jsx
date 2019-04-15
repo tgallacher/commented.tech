@@ -29,19 +29,19 @@ const Image = styled(GatsbyImg)`
   ${height}
 `;
 
-const PostHero = ({ credit, ...props }) => (
+const PostHero = ({ credit, expand = true, ...props }) => (
   <div>
     <Image
       {...props}
       display="block"
-      height={[300, 400]}
-      objectFit="contain"
-      position="relative"
-      maxWidth="100vw"
-      right="50%"
-      width="100vw"
-      left="50%"
-      mx="-50vw"
+      height={expand ? [300, 400] : [150, 200]}
+      objectFit={expand ? 'contain' : undefined}
+      position={expand ? 'relative' : undefined}
+      maxWidth={expand ? '100vw' : undefined}
+      right={expand ? '50%' : undefined}
+      width={expand ? '100vw' : undefined}
+      left={expand ? '50%' : undefined}
+      mx={expand ? '-50vw' : undefined}
     />
 
     <HeroCredit
