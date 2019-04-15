@@ -2,6 +2,9 @@
 title: Simple and Effective Redux Actions
 date: '2019-03-20'
 labels: redux
+hero:
+  img: './hero.jpg'
+  credit: Photo by <a href="https://unsplash.com/photos/RgIKRYhmG2k">Álvaro Bernal</a> on <a href="https://unsplash.com/search/photos/simplicity">Unsplash</a>
 ---
 
 Redux has been the staple for ReactJS (and other) apps for some years, and has completely transformed the frontend landscape for building complex and dynamic client-side apps ever since.
