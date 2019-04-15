@@ -8,6 +8,7 @@ import {
   maxWidth,
   display,
   borders,
+  height,
   space,
   right,
   width,
@@ -38,8 +39,8 @@ export const pageQuery = graphql`
           credit
           img {
             childImageSharp {
-              fixed(height: 500, width: 2000, cropFocus: ENTROPY) {
-                ...GatsbyImageSharpFixed_withWebp
+              fluid(maxHeight: 500, cropFocus: ENTROPY) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -76,13 +77,14 @@ const Image = styled(GatsbyImg)`
   ${maxWidth}
   ${position}
   ${display}
+  ${height}
 `;
 
 const BlogPostTemplate = ({ data, location, pageContext }) => {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
   const heroImg =
-    data.markdownRemark.frontmatter.hero.img.childImageSharp.fixed;
+    data.markdownRemark.frontmatter.hero.img.childImageSharp.fluid;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -100,8 +102,10 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
       >
         <div>
           <Image
-            fixed={heroImg}
+            fluid={heroImg}
             display="block"
+            height={[300, 400]}
+            objectFit="contain"
             position="relative"
             maxWidth="100vw"
             right="50%"
