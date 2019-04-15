@@ -1,7 +1,10 @@
 ---
-title: Thoughts on static type checking in JavaScript
-date: '2019-04-??'
+title: 'Thoughts on Flowtype and Typescript in 2019'
+date: '2019-04-17'
 labels: flowtype, typescript
+hero:
+  img: './hero.jpg'
+  credit: Photo by <a href="https://unsplash.com/photos/czDvRp5V2b0">Alvaro Pinot</a> on <a href="https://unsplash.com/search/photos/structure">Unsplash</a>
 ---
 
 ## Typescript
