@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import GatsbyImg from 'gatsby-image';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -20,6 +19,7 @@ import Layout from 'components/Layout';
 import SEO from 'components/SEO';
 import PostPagination from 'components/PostPagination';
 import PostMeta from 'components/PostMeta';
+import PostHero from 'components/PostHero';
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -64,22 +64,6 @@ const Footer = styled.footer`
   ${borders}
 `;
 
-const HeroCredit = styled.small`
-  text-align: center;
-  display: block;
-`;
-
-const Image = styled(GatsbyImg)`
-  ${left}
-  ${right}
-  ${space}
-  ${width}
-  ${maxWidth}
-  ${position}
-  ${display}
-  ${height}
-`;
-
 const BlogPostTemplate = ({ data, location, pageContext }) => {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
@@ -100,26 +84,10 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
           }
         `}
       >
-        <div>
-          <Image
-            fluid={heroImg}
-            display="block"
-            height={[300, 400]}
-            objectFit="contain"
-            position="relative"
-            maxWidth="100vw"
-            right="50%"
-            width="100vw"
-            left="50%"
-            mx="-50vw"
-          />
-
-          <HeroCredit
-            dangerouslySetInnerHTML={{
-              __html: data.markdownRemark.frontmatter.hero.credit,
-            }}
-          />
-        </div>
+        <PostHero
+          credit={data.markdownRemark.frontmatter.hero.credit}
+          fluid={heroImg}
+        />
 
         <Header mb={5}>
           <h1>{post.frontmatter.title}</h1>
