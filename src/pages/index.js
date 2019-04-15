@@ -30,6 +30,15 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date(formatString: "Do MMM, YYYY")
+            hero {
+              img {
+                childImageSharp {
+                  fluid(maxHeight: 500, cropFocus: ENTROPY) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
           }
         }
       }

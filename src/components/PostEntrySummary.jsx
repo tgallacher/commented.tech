@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { space } from 'styled-system';
 
 import PostMeta from './PostMeta';
+import PostHero from './PostHero';
 
 const Article = styled.article`
   ${space}
@@ -21,6 +22,10 @@ const PostEntrySummary = ({ post }) => {
   return (
     <Article mb={[3, 0]}>
       <InnerWrapper p={2}>
+        <PostHero
+          expand={false}
+          fluid={post.frontmatter.hero.img.childImageSharp.fluid}
+        />
         <H3 mb={1}>
           <Link to={post.fields.slug}>{title}</Link>
         </H3>
