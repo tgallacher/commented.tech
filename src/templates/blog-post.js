@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
+import GatsbyImg from 'gatsby-image';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { space, borders } from 'styled-system';
+import {
+  position,
+  maxWidth,
+  display,
+  borders,
+  space,
+  right,
+  width,
+  left,
+} from 'styled-system';
 
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
@@ -24,6 +34,16 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "Do MMM, YYYY")
+        hero {
+          credit
+          img {
+            childImageSharp {
+              fixed(height: 500, width: 2000, cropFocus: ENTROPY) {
+                ...GatsbyImageSharpFixed_withWebp
+              }
+            }
+          }
+        }
       }
       fields {
         readingTime {
@@ -43,9 +63,26 @@ const Footer = styled.footer`
   ${borders}
 `;
 
+const HeroCredit = styled.small`
+  text-align: center;
+  display: block;
+`;
+
+const Image = styled(GatsbyImg)`
+  ${left}
+  ${right}
+  ${space}
+  ${width}
+  ${maxWidth}
+  ${position}
+  ${display}
+`;
+
 const BlogPostTemplate = ({ data, location, pageContext }) => {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
+  const heroImg =
+    data.markdownRemark.frontmatter.hero.img.childImageSharp.fixed;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -61,6 +98,25 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
           }
         `}
       >
+        <div>
+          <Image
+            fixed={heroImg}
+            display="block"
+            position="relative"
+            maxWidth="100vw"
+            right="50%"
+            width="100vw"
+            left="50%"
+            mx="-50vw"
+          />
+
+          <HeroCredit
+            dangerouslySetInnerHTML={{
+              __html: data.markdownRemark.frontmatter.hero.credit,
+            }}
+          />
+        </div>
+
         <Header mb={5}>
           <h1>{post.frontmatter.title}</h1>
           <PostMeta
