@@ -44,10 +44,12 @@ The following is an summary of my perspective on the most popular JS static type
 
 Flowtype
 
+- only types
 - config supported by 1 additional file, and a Babel plugin, ESlint plugin
 - poorer IDE integration, e.g. VSCode
 - Fewer stars on Github
 - Difficult to understand error msgs (less of a problem these days)
+- flow-typed
 
 ## Typescript
 
@@ -55,7 +57,10 @@ Flowtype
 >
 > &mdash; http://www.typescriptlang.org/
 
-- Not just typing, JS superset
+- Not just types, JS superset
 - Contains language features not native/supported in JS
 - Contains features available at compile time, not runtime -> misleading, e.g. `readonly`, `protected`, `private` access; `implements` class "contracting", etc
 - Requires additional/separate tooling, e.g. TSLint, TSC - remove Babel, ESLint
+- definitely-typed
+- tight integrations with IDE / VSCode
+- Superset latest ECMAScript standards (less important) + more
