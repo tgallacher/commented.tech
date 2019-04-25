@@ -1,29 +1,25 @@
 ---
-title: 'Thoughts on Flowtype and Typescript in 2019'
-date: '2019-04-17'
+title: 'Flowtype and Typescript in 2019'
+date: '2019-04-27'
 labels: flowtype, typescript
 hero:
   img: './hero.jpg'
   credit: Photo by <a href="https://unsplash.com/photos/czDvRp5V2b0">Alvaro Pinot</a> on <a href="https://unsplash.com/search/photos/structure">Unsplash</a>
 ---
 
-The existence of [Typescript](http://www.typescriptlang.org/) and [Flowtype](https://flow.org/) in the JS community are relatively well known, and have been long established for at least a few years, with Typescript being the longer-standing and more mature of the two. In this post I would like to throw out some of my thoughts on each of these as additions to any project (large or small), and add to the ongoing discussion around which you should choose.
+The existence of [Typescript](http://www.typescriptlang.org/) and [Flowtype](https://flow.org/) in the JS community are relatively well known, and have been long established for at least a few years, with Typescript being the longer-standing and more mature of the two. In this post I would like to throw out some of my thoughts on each of these as additions to any project (large or small), and add to the ongoing discussion around which you should choose; if any.
 
 > The first thing to call out up front is that there is no "_right_" choice. There are too many variables involved with each developer, project, and/or company needs or restrictions. This is more of an attempt to provide another perspective so that hopefully the choice is easier to make.
 
 ## First, the why
 
-As the JS ecosystem has continued to mature and grow over the years, the complexity of web apps, and their data consumption, has continued to grow at the same pace. The likes of [ReactJS](https://reactjs.org/), [AngularJS](https://angularjs.org/), and [VueJS](https://vuejs.org/) have only simplified how engineers can better manage this type of complexity on the frontend, at scale; and with speed, compared to, for example, the days of jQuery.
+As the JS ecosystem has continued to mature and grow over the years, so too has the complexity of web apps, and their data consumption. The likes of [ReactJS](https://reactjs.org/), [AngularJS](https://angularjs.org/), and [VueJS](https://vuejs.org/) have only simplified how engineers can better manage this type of complexity on the frontend, at scale; and with speed, compared to, for example, the days of jQuery.
 
-However, with the growing complexity of apps and their need to support consuming, sharing, manipulating and managing wide -- and potentially varying -- data structures, it becomes often increasingly common to be faced or bogged down by some of the classic -- and hard to debug -- JS errors: "`Cannot access foo of undefined`", or "`.barbaz() is not a function`", and many others like these. And with these hard to debug errors, speed and confidence begin to dwindle.
+With this growing complexity in apps and their need to support consuming, sharing, manipulating and managing wide -- and typically varying -- data structures, it becomes increasingly common to hit some of the classic -- and hard to debug -- JS errors: "`Cannot access foo of undefined`", or "`.barbaz() is not a function`", and many others like these. And with these hard to debug errors, pace and confidence begin to dissipate.
 
 <!-- As a result, it wasn't long before JS' rapid prototyping benefits -- as is often the selling point with dynamically typed, interpreted languages in general -- that I actually found myself being slower instead of faster. With the growing complexity of these apps and their support for sharing, manipulating and managing wide and potentially varying data structures throughout a given codebase, I often increasingly ran into some of the classic -- and hard to debug -- JS errors: "`Cannot access foo of undefined`", or "`.barbaz() is not a function`", and many others like these. -->
 
-The solution to managing this complexity with scale and pace, ironically, is to introduce _type checking_ to these apps. With type checking, engineers get realtime feedback if variables, data, or whatever were to be used in a way that was contradictory to how they were declared to be used: For example, trying to run `foo.map()` on foo, which was declared to be an `Object`. Better to get that feedback before you ship to production! A very familiar experience if you have ever worked with _strongly typed_ languages, such as C, C++, Java, etc.
-
-However, we still want to capitalise on JS' core "protoyping at pace" benefits -- as it is still a dynamically typed, interpreted language. This is where Typescript or Flowtype come in: by providing [static type checking](https://hackernoon.com/i-finally-understand-static-vs-dynamic-typing-and-you-will-too-ad0c2bd0acc7).
-
-Static type checking provides a half-way house between building quick and fast, but still being able to add realtime feedback to the code you create, where there is value to be had for that extra overhead: Writing and managing type information takes a bit more effort than not having it, so we only want to do it where the complexity demands it. Type checking is also a lower-cost alternative to increasing your test suite coverage, which is more code to write and maintain!
+The solution to managing this complexity with scale and pace, and to catch these common bugs early, ironically, is to introduce _types_ to our code. Typing our code provides realtime feedback (in a supported IDE), as well as allows us to check code at the PR step, therefore allowing us to leverage CI tooling to prevent bugs being introduced to the mainline of the project. However, we still want to enjoy the fast pace of development that working with a dynamically typed, interpreted language brings. We instead would like to land somewhere in the middle, and that is exactly what [static type checking](https://hackernoon.com/i-finally-understand-static-vs-dynamic-typing-and-you-will-too-ad0c2bd0acc7) provides.
 
 <!-- ## Then, What and Why? -->
 
@@ -35,9 +31,9 @@ Static type checking provides a half-way house between building quick and fast, 
 
 <!-- As a ReactJS user, the following will be skewed in that direction. Also, as I have considerably more experience with Flowtype, we'll start there. -->
 
-As with anything in the JS ecosystem, the "goal posts are always moving". In that, the pros and cons that are listed below are likely to be inaccurate over time as each project continues to improve their product. I'll try to keep this up to date over time, as big changes are made to either platform. For now, the following summary is based on:
+The following is an summary of my perspective on the most popular JS static type checkers, Flowtype and Typescript. I had a brief intro to Typescript in 2015 (with React + Redux), before moving to a new position and introducing and working with Flowtype for approx. 18 months. Over the last 6 - 9 months, I have picked Typescript again, and now continue to use a mixture of both: some projects are Typescript, some Flowtype, some none at all. This is where I have landed based on my exposure so far.
 
-- Flowtype `v0.97`
+- Flowtype `v0.80`
 - Typescript `v3.4`
 
 ## Flowtype
