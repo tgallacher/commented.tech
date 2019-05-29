@@ -71,8 +71,10 @@ export const globalStyles = css`
     font-family: 'Cutive Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
       monospace;
     text-shadow: none;
-    background: #d7d58a;
-    color: black;
+    background: #e3e091;
+    padding: 0.25em 0.5em;
+    color: ${PRIMARY_COLOR_DARK};
+    border-radius: 0;
   }
 `;
 
