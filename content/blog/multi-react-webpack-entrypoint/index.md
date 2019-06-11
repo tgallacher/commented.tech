@@ -1,5 +1,5 @@
 ---
-title: 'Creating Multi Webpack Entrypoints in a React Component Library'
+title: 'Multi Bundle Entrypoints in a React Component Library using Webpack'
 date: '2019-05-30'
 labels:
   - webpack
