@@ -5014,10 +5014,10 @@ gatsby-plugin-react-helmet@^3.0.0:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-remove-generator@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-generator/-/gatsby-plugin-remove-generator-1.0.3.tgz#e1b668ceddf8fbd31318341c7badec27775feb94"
-  integrity sha512-cDqVSAQA/2G0BuPcx0P9+d17M2OdUhOGoy3Jbvtks/Jl8s8kUQXM5akLb0wX6InfFxNd9DskXyld09fr8IAuHQ==
+gatsby-plugin-remove-generator@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-generator/-/gatsby-plugin-remove-generator-1.0.4.tgz#2dfac08f6875721ae13840466b8c2fdbe99e3b04"
+  integrity sha512-tD8D7Ls1UEHFfUrAgA+4qgFKuagJXrbDPXmsbDnabe0GugdltEwxYnBl7JkFmLDrMENpKZvgD6oulgSA4zidyg==
 
 gatsby-plugin-robots-txt@^1.4.0:
   version "1.4.0"
