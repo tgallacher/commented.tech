@@ -10,6 +10,7 @@ module.exports = {
     siteUrl: SITE_URL,
   },
   plugins: [
+    'gatsby-plugin-remove-generator',
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
