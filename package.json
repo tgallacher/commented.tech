@@ -5,12 +5,10 @@
   "version": "0.1.0",
   "author": "Tom Gallacher <tgallacher@users.noreply.github.com>",
   "scripts": {
-    "dev": "gatsby develop",
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "format": "prettier --config ./.prettierrc.json --write 'src/**/*.js' 'src/**/*.md'",
-    "develop": "gatsby develop",
-    "start": "yarn develop",
+    "start": "gatsby develop",
     "build": "gatsby build",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
   },
