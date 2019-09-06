@@ -7,12 +7,14 @@ hero:
   credit: Photo by <a href="https://unsplash.com/@rocua18">Rodolfo Cuadros</a> on <a href="https://unsplash.com/">Unsplash</a>
 ---
 
+> Note: While the code examples focus on a Serverless config, the API Gateway customisation relies on the native AWS CloudFormation API and so this can easily be added to a CloudFormation setup all the same.
+
 AWS's API Gateway (APIG) is a powerful weapon in your distributed architectural toolkit. However, as powerful as it is, it can often be challenging to either harness its full power, or even get common use cases up and running quickly. In my opinion, these are both largely due to the fact that:
 
 1. The APIG is _highly_ configurable, as it can support a whole bunch of use cases, and so can be difficult to know where to start; and
 1. The AWS documentation is vast, generally thorough, and often difficult to follow as it's fragmented across many pages/sections.
 
-Here, we'll try and show some of the power AWS's API Gateway can offer, as an HTTP frontend to your distributed setup, and we'll also cover some of its key features by demoing how you can configure an API Gateway as an ingress point for an example backend integration.
+Here, we'll try and show some of the power API Gateway can offer, as an HTTP frontend to your distributed setup, and we'll also cover some of its key features by demoing how you can configure an API Gateway as an ingress point for an example backend integration.
 
 APIG can sit in front of a lot of different backend "_integrations_", and these result in different configuration [types](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-type). Here, we will use the _HTTP proxy_ integration type, using the popular AWS CloudSearch service as the backend.
 
@@ -28,11 +30,9 @@ To enable CORS support, and to search our document store from a client app, we n
 1. `Access-Control-Allow-Methods`
 1. `Access-Control-Allow-Origin`
 
-Neither of this is possible using CloudSearch (at the time of writing, anyway), so we need APIG to save us from having to set up and deploy/manage a backend proxy--such as a AWS Lambda.
+Neither of this is possible using CloudSearch (at the time of writing, anyway), so we need APIG to save us from having to set up and deploy/manage a backend proxy--such as an AWS Lambda.
 
 ## Serverless setup
-
-> Note: While the code examples focus on a Serverless config, the API Gateway customisation relies on the native AWS CloudFormation API and so this can easily be added to a CloudFormation setup all the same.
 
 As we are using the [Serverless framework](https://serverless.com) to configure and manage our serverless setup, our API Gateway customisation will live in our `serverless.yml` file.
 
@@ -55,15 +55,17 @@ functions:
           method: get
 ```
 
-Once deployed, this will give us an endpoint, `GET /bar/` on an auto generated AWS endpoint. The generated AWS domain actually points to an API Gateway, which is configured to pass all GET requests for `/bar/` to our above function handler.
+Once deployed, this will give us an endpoint, `GET /bar/` on an auto generated AWS endpoint. The generated AWS domain actually points to an API Gateway, which is configured to pass all GET requests for `/bar/` to our above function handler. The Serverless framework automatically configures and provisions the APIG for us behind the hood.
 
-With this configuration, we'll then imagine we want to reuse the same API Gateway configured indirectly in our setup above and configure it to also act as a proxy to our CloudSearch setup. Crucially, however, the proxy should be configured to auto inject the required HTTP headers in the HTTP response, back to the client, so that our CloudSearch endpoint happily allows CORS requests.
+With this configuration, we'll then imagine that our backend proxy should be handled by the same APIG as our Serverless function above. This highlights one of the core features/benefits of APIG: The ability to create a single ingress point, and thus configuration, for many (distributed) backends; not just those that are configured in the same (Serverless) project.
+
+With our intended changes to the default APIG, we'll want to auto inject the necessary HTTP headers in the HTTP response back to the client so that our CloudSearch endpoint seemingly allows CORS requests.
 
 ## Configuring CORS for our API Gateway
 
-Our Serverless config will also allow us to configure and manage other AWS resources using native CloudFormation; all such config lives under the `resources.Resources` node.
+Serverless configs--which use the AWS provider--also allow us to configure and manage other AWS resources within the same config file, by using AWS's native CloudFormation API. The CloudFormation resources are all configured within the ["resources.Resources"](https://serverless.com/framework/docs/providers/aws/guide/resources/) node.
 
-The first thing we need to do is to add a proxy endpoint to the auto-generated API Gateway from above. We can do this using the AWS CloudFormation `AWS::ApiGateway::Resource` API:
+With this in mind, the first thing we need to do is to add a proxy endpoint to the auto-generated API Gateway from above. This will give us an endpoint which will accept incoming requests and pass those over to a configured upstream backend. We can do this using the AWS CloudFormation `AWS::ApiGateway::Resource` API:
 
 ```yaml
 # serverless.yml
@@ -86,7 +88,7 @@ resources:
           Ref: ApiGatewayRestApi
 ```
 
-With the above config, our default API Gateway will now have a new HTTP path, `/search` which will proxy incoming requests upstream to the configured backend (to follow); eventually, this will be our CloudSearch API.
+With the above config, our default API Gateway will now have a new HTTP path, `/search` which will proxy incoming requests to the configured backend (to follow); eventually, this will be our CloudSearch API.
 
 The next step, is to configure the proxy endpoint to auto inject our CORS headers as the request makes its way through the [API Gateway process](https://www.alexdebrie.com/posts/api-gateway-elements/#roadmap-the-three-basic-parts). We configure this behaviour using the `AWS::ApiGateway::Method` CloudFormation API:
 
@@ -148,7 +150,9 @@ With this, we are doing a few things all at once:
 1. switch on API Gateway's response "_transformer_", which will allow us to modify the response from the upstream (CloudSearch) API before it is given back to the client;
 1. add additional HTTP CORS headers to the response, for all HTTP 200 responses from the upstream API.
 
-Combined, our `/search` endpoint should correctly proxy GET requests to our upstream (CloudSearch) API, with a response which satisfies CORS requirements. However, there is still one piece of the puzzle missing; the HTTP OPTIONS preflight request. To configure the HTTP OPTIONS request we can add a "_Mock_" endpoint, as our upstream CloudSearch API won't respond to a HTTP OPTIONS request correctly. This is pretty simple to configure on API Gateway:
+Combined, our `/search` endpoint should correctly proxy GET requests to our upstream (CloudSearch) API, with a response which satisfies CORS requirements. However, there is still one piece of the puzzle missing: the HTTP OPTIONS preflight request.
+
+To configure the HTTP OPTIONS request we can add a "_Mock_" endpoint, as our upstream CloudSearch API won't respond to a HTTP OPTIONS request correctly. This is pretty simple to configure on API Gateway:
 
 ```yaml
 # serverless.yml
@@ -198,7 +202,9 @@ resources:
 
 The above config almost replicates our HTTP GET config, with the key difference being now that the configured `AWS::ApiGateway::Method` is a mocked endpoint: An endpoint which API Gateway will handle entirely for both receiving a request and returning a response.
 
-## Full Example
+## Altogether
+
+Combined, this should now allow us to accept incoming HTTP GET requests to `/search` from a client app, and have these proxied to a configured AWS CloudSearch backend, with the response now satisfying all necessary CORS requirements.
 
 The full config should look something like:
 
