@@ -34,6 +34,7 @@ const createPages = ({ graphql, actions }) => {
         allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
           edges {
             node {
+              fileAbsolutePath
               fields {
                 slug
               }
@@ -46,9 +47,7 @@ const createPages = ({ graphql, actions }) => {
       }
     `);
 
-    if (errors) {
-      return reject(errors);
-    }
+    if (errors) return reject(errors);
 
     // Create blog posts pages.
     const posts = data.allMarkdownRemark.edges;
@@ -63,6 +62,8 @@ const createPages = ({ graphql, actions }) => {
         component: blogPostTemplate,
         context: {
           slug: post.node.fields.slug,
+          // required for [gatsby-plugin-changelog-context]
+          fileAbsolutePath: post.node.fileAbsolutePath,
           previous,
           next,
         },
