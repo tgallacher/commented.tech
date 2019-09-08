@@ -20,6 +20,7 @@ import SEO from 'components/SEO';
 import PostPagination from 'components/PostPagination';
 import PostMeta from 'components/PostMeta';
 import PostHero from 'components/PostHero';
+import Changelog from 'components/Changelog';
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -100,6 +101,8 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
         </Header>
 
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+
+        <Changelog commits={pageContext.changelog} />
 
         <Footer mt={4} borderTop="1px solid #455a64">
           <PostPagination pageContext={pageContext} />
