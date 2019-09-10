@@ -10,6 +10,7 @@ module.exports = {
     siteUrl: SITE_URL,
   },
   plugins: [
+    'gatsby-plugin-twitter',
     'gatsby-plugin-changelog-context',
     'gatsby-plugin-remove-generator',
     {
@@ -49,6 +50,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          'gatsby-remark-embedder',
           'gatsby-remark-reading-time',
           {
             resolve: `gatsby-remark-images`,
