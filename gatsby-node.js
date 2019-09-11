@@ -23,54 +23,49 @@ const onCreateNode = ({ node, actions, getNode }) => {
  *
  * @param {*} param0
  */
-const createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+const createPages = async ({ graphql, actions: { createPage } }) => {
+  const blogPostTemplate = path.resolve('./src/templates/blog-post.js');
 
-  return new Promise(async (resolve, reject) => {
-    const blogPostTemplate = path.resolve('./src/templates/blog-post.js');
-
-    const { data, errors } = await graphql(`
-      {
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-          edges {
-            node {
-              fileAbsolutePath
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
+  const { data, errors } = await graphql(`
+    {
+      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        edges {
+          node {
+            fileAbsolutePath
+            fields {
+              slug
+            }
+            frontmatter {
+              title
             }
           }
         }
       }
-    `);
+    }
+  `);
 
-    if (errors) return reject(errors);
+  if (errors) {
+    throw errors;
+  }
 
-    // Create blog posts pages.
-    const posts = data.allMarkdownRemark.edges;
+  // Create blog posts pages.
+  const posts = data.allMarkdownRemark.edges;
 
-    posts.forEach((post, index) => {
-      const previous =
-        index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
+  posts.forEach((post, index) => {
+    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+    const next = index === 0 ? null : posts[index - 1].node;
 
-      createPage({
-        path: post.node.fields.slug,
-        component: blogPostTemplate,
-        context: {
-          slug: post.node.fields.slug,
-          // required for [gatsby-plugin-changelog-context]
-          fileAbsolutePath: post.node.fileAbsolutePath,
-          previous,
-          next,
-        },
-      });
+    createPage({
+      path: post.node.fields.slug,
+      component: blogPostTemplate,
+      context: {
+        slug: post.node.fields.slug,
+        // required for [gatsby-plugin-changelog-context]
+        fileAbsolutePath: post.node.fileAbsolutePath,
+        previous,
+        next,
+      },
     });
-
-    return resolve();
   });
 };
 
