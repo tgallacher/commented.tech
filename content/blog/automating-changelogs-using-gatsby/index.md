@@ -1,6 +1,6 @@
 ---
 title: Automating page changelogs using GatsbyJS
-date: '2019-09-10'
+date: '2019-09-11'
 labels: gatsby, gatsby-plugins
 hero:
   img: './hero.jpg'
