@@ -16,7 +16,7 @@ const FooterArea = () => (
   <Footer py={2} px={0} mt={5}>
     &copy; {new Date().getFullYear()} Tom Gallacher
     <A
-      href="//twitter.com/tom_gallacher"
+      href="//twitter.com/tfgallacher"
       rel="noopener noreferrer"
       title="Twitter profile"
       target="_blank"

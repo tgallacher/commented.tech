@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
 /**
  * Palette colors
  *
@@ -83,13 +83,25 @@ export const globalStyles = css`
  */
 export const gatsbyHighlight = css`
   margin: 2em 0;
-  overflow: auto;
+  overflow: hidden;
   border-radius: 0.3em;
   border: 1px solid ${PRIMARY_COLOR_DARK};
+  ${'' /* padding: 1em; */}
 
+  /**
+   * Remove the default PrismJS theme background-color, border-radius, margin,
+   * padding and overflow.
+   * 1. Make the element just wide enough to fit its content.
+   * 2. Always fill the visible space in .gatsby-highlight.
+   * 3. Adjust the position of the line numbers
+   */
   pre[class*='language-'] {
     padding: 0;
-    margin: 0;
+    margin: 1em 0;
+    ${'' /* overflow: initial; */}
+    float: left; /* 1 */
+    min-width: 100%; /* 2 */
+    background-color: ${darken(0.02, PRIMARY_COLOR_DARK)};
 
     &.line-numbers {
       padding: 0.5em 0 0.5em 2.8em;
@@ -100,5 +112,14 @@ export const gatsbyHighlight = css`
       top: 0.5em;
       bottom: 0.5em;
     }
+  }
+
+  .gatsby-highlight-code-line {
+    background-color: ${lighten(0.05, PRIMARY_COLOR_DARK)};
+    display: block;
+    margin: 0 -1em;
+    padding-right: 1em;
+    padding-left: 0.75em;
+    border-left: 0.25em solid ${lighten(0.0, ACCENT_COLOR)};
   }
 `;
