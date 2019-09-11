@@ -83,7 +83,7 @@ export const globalStyles = css`
  */
 export const gatsbyHighlight = css`
   margin: 2em 0;
-  overflow: auto;
+  overflow: hidden;
   border-radius: 0.3em;
   border: 1px solid ${PRIMARY_COLOR_DARK};
   ${'' /* padding: 1em; */}
@@ -98,7 +98,7 @@ export const gatsbyHighlight = css`
   pre[class*='language-'] {
     padding: 0;
     margin: 1em 0;
-    overflow: initial;
+    ${'' /* overflow: initial; */}
     float: left; /* 1 */
     min-width: 100%; /* 2 */
     background-color: ${darken(0.02, PRIMARY_COLOR_DARK)};
@@ -117,8 +117,7 @@ export const gatsbyHighlight = css`
   .gatsby-highlight-code-line {
     background-color: ${lighten(0.05, PRIMARY_COLOR_DARK)};
     display: block;
-    margin-right: -1em;
-    margin-left: -1em;
+    margin: 0 -1em;
     padding-right: 1em;
     padding-left: 0.75em;
     border-left: 0.25em solid ${lighten(0.0, ACCENT_COLOR)};

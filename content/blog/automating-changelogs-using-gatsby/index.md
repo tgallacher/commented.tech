@@ -131,6 +131,7 @@ There is so much you can do here to configure the way Gatsby should generate you
 We don't want to force how our commit data should be displayed, so we want to instead add the commit data to Gatsby's internal data layer so that it can be extracted in our page templates, ready for display. The simplest way to do this, is to add the commit data to the page context (see [pageContext](https://www.gatsbyjs.org/docs/gatsby-internals-terminology/)). We can modify the above `createPages` function to achieve this:
 
 ```js
+// highlight-range{11,29-31,38,42}
 // gatsby-node.js
 const path = require(`path`);
 
@@ -141,7 +142,6 @@ const createPages = async ({ graphql, actions: { createPage } }) => {
       allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
         edges {
           node {
-            // highlight-next-line
 +           fileAbsolutePath
             fields {
               slug
@@ -160,11 +160,8 @@ const createPages = async ({ graphql, actions: { createPage } }) => {
   }
 
   // loop over each post and tell Gastby to create the output page
-  // highlight-next-line
 + return Promise.all(
-    // highlight-next-line
 +   data.allMarkdownRemark.edges.forEach(async (post, index) => {
-      // highlight-next-line
 +     const commits = await getChangelog(post.node.fileAbsolutePath);
 
       createPage({
@@ -172,12 +169,10 @@ const createPages = async ({ graphql, actions: { createPage } }) => {
         component: blogPostTemplate,
         context: {
           slug: post.node.fields.slug,
-          // highlight-next-line
 +         commits,
         },
       });
     }),
-    // highlight-next-line
 + );
 };
 ```
