@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import {
   position,
   maxWidth,
@@ -30,8 +31,8 @@ export const pageQuery = graphql`
         author
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    mdx(fields: { slug: { eq: $slug } }) {
+      body
       excerpt(pruneLength: 160)
       frontmatter {
         title
@@ -65,11 +66,13 @@ const Footer = styled.footer`
   ${borders}
 `;
 
-const BlogPostTemplate = ({ data, location, pageContext }) => {
-  const post = data.markdownRemark;
-  const siteTitle = data.site.siteMetadata.title;
-  const heroImg =
-    data.markdownRemark.frontmatter.hero.img.childImageSharp.fluid;
+const BlogPostTemplate = ({
+  data: { mdx: post, site },
+  location,
+  pageContext,
+}) => {
+  const siteTitle = site.siteMetadata.title;
+  const heroImg = post.frontmatter.hero.img.childImageSharp.fluid;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -85,10 +88,7 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
           }
         `}
       >
-        <PostHero
-          credit={data.markdownRemark.frontmatter.hero.credit}
-          fluid={heroImg}
-        />
+        <PostHero credit={post.frontmatter.hero.credit} fluid={heroImg} />
 
         <Header mb={5}>
           <h1>{post.frontmatter.title}</h1>
@@ -100,7 +100,7 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
           />
         </Header>
 
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <MDXRenderer>{post.body}</MDXRenderer>
 
         <Changelog commits={pageContext.changelog} />
 

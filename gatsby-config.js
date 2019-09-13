@@ -47,11 +47,13 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
-          'gatsby-remark-embedder',
-          'gatsby-remark-reading-time',
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          { resolve: 'gatsby-remark-embedder' },
+          { resolve: `gatsby-remark-copy-linked-files` },
+          { resolve: `gatsby-remark-smartypants` },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -77,11 +79,11 @@ module.exports = {
               rel: 'nofollow noopener noreferrer',
             },
           },
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
         ],
       },
     },
+    // despite its name, this doesn't expose 'remark' functionality
+    'gatsby-remark-reading-time',
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

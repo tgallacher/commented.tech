@@ -14,28 +14,23 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 1000
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-            readingTime {
-              text
-            }
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+      nodes {
+        excerpt
+        fields {
+          slug
+          readingTime {
+            text
           }
-          frontmatter {
-            title
-            date(formatString: "Do MMM, YYYY")
-            hero {
-              img {
-                childImageSharp {
-                  fluid(maxHeight: 500, cropFocus: ENTROPY) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
+        }
+        frontmatter {
+          title
+          date(formatString: "Do MMM, YYYY")
+          hero {
+            img {
+              childImageSharp {
+                fluid(maxHeight: 500, cropFocus: ENTROPY) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -48,7 +43,7 @@ export const pageQuery = graphql`
 
 function BlogIndex({ data, location }) {
   const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMarkdownRemark.edges;
+  const posts = data.allMdx.nodes;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -59,8 +54,8 @@ function BlogIndex({ data, location }) {
 
       <Bio />
 
-      {posts.map(({ node }) => (
-        <PostSummary key={node.fields.slug} post={node} />
+      {posts.map(post => (
+        <PostSummary key={post.fields.slug} post={post} />
       ))}
     </Layout>
   );
