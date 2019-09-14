@@ -1,4 +1,4 @@
-const TITLE = `Commented.tech`;
+const TITLE = `//commented.tech`;
 const AUTHOR = `Tom Gallacher`;
 const SITE_URL = `https://commented.tech`;
 
@@ -13,25 +13,7 @@ module.exports = {
     'gatsby-plugin-twitter',
     'gatsby-plugin-changelog-context',
     'gatsby-plugin-remove-generator',
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: 'Roboto',
-            variants: ['700'],
-          },
-          {
-            family: 'Cutive Mono',
-            variants: ['400'],
-          },
-          {
-            family: 'Montserrat',
-            variants: ['400', '700'],
-          },
-        ],
-      },
-    },
+    'gatsby-plugin-theme-ui',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -83,7 +65,8 @@ module.exports = {
       },
     },
     // despite its name, this doesn't expose 'remark' functionality
-    'gatsby-remark-reading-time',
+    // TODO: Update to upstream when https://github.com/syntra/gatsby-remark-reading-time/pull/5 is merged
+    'gatsby-remark-reading-time-local',
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

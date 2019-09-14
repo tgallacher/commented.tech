@@ -16,7 +16,7 @@ export const pageQuery = graphql`
     }
     allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
       nodes {
-        excerpt
+        excerpt(pruneLength: 250)
         fields {
           slug
           readingTime {
@@ -47,14 +47,13 @@ function BlogIndex({ data, location }) {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO
-        title="All posts"
-        keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-      />
+      <SEO title="" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
 
       <Bio />
 
-      {posts.map(post => (
+      <PostSummary post={posts[0]} />
+
+      {posts.slice(1).map(post => (
         <PostSummary key={post.fields.slug} post={post} />
       ))}
     </Layout>
