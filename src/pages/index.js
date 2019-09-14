@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
@@ -51,7 +53,14 @@ function BlogIndex({ data, location }) {
 
       <Bio />
 
-      <PostSummary post={posts[0]} />
+      <section
+        sx={{
+          mx: [0, undefined, -5],
+          px: [0, undefined, 4],
+        }}
+      >
+        <PostSummary feature post={posts[0]} />
+      </section>
 
       {posts.slice(1).map(post => (
         <PostSummary key={post.fields.slug} post={post} />

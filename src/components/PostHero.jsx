@@ -1,55 +1,36 @@
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui';
 import React from 'react';
-import styled from '@emotion/styled';
-import GatsbyImg from 'gatsby-image';
-import {
-  position,
-  maxWidth,
-  display,
-  borders,
-  height,
-  space,
-  right,
-  width,
-  left,
-} from 'styled-system';
+import Image from 'gatsby-image';
 
-const HeroCredit = styled.small`
-  text-align: center;
-  display: block;
-`;
-
-const Image = styled(GatsbyImg)`
-  ${left}
-  ${right}
-  ${space}
-  ${width}
-  ${maxWidth}
-  ${position}
-  ${display}
-  ${height}
-`;
-
-const PostHero = ({ credit, expand = true, ...props }) => (
-  <div>
+const PostHero = ({ credit, feature, expand = true, ...props }) => (
+  <React.Fragment>
     <Image
       {...props}
-      display="block"
-      height={expand ? [300, 400] : [150, 200]}
       objectFit={expand ? 'contain' : undefined}
-      position={expand ? 'relative' : undefined}
-      maxWidth={expand ? '100vw' : undefined}
-      right={expand ? '50%' : undefined}
-      width={expand ? '100vw' : undefined}
-      left={expand ? '50%' : undefined}
-      mx={expand ? '-50vw' : undefined}
+      sx={{
+        display: 'block',
+        height: expand
+          ? [300, undefined, 400]
+          : [150, undefined, feature ? 300 : 200],
+        position: expand ? 'relative' : undefined,
+        maxWidth: expand ? '100vw' : undefined,
+        right: expand ? '50%' : undefined,
+        width: expand ? '100vw' : undefined,
+        left: expand ? '50%' : undefined,
+        mx: expand ? '-50vw' : undefined,
+      }}
     />
-
-    <HeroCredit
+    <small
+      sx={{
+        textAlign: 'center',
+        display: 'block',
+      }}
       dangerouslySetInnerHTML={{
         __html: credit,
       }}
     />
-  </div>
+  </React.Fragment>
 );
 
 export default PostHero;
