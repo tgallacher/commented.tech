@@ -44,11 +44,10 @@ export const pageQuery = graphql`
 `;
 
 function BlogIndex({ data, location }) {
-  const siteTitle = data.site.siteMetadata.title;
   const posts = data.allMdx.nodes;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={data.site.siteMetadata.title}>
       <SEO title="" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
 
       <Bio />

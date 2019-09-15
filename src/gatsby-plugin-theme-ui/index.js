@@ -1,7 +1,26 @@
+import { lighten, darken } from 'polished';
+import prismPreset from '@theme-ui/prism/presets/prism-okaidia';
+// import prism from '@theme-ui/prism/presets/theme-ui'
+
+// common heading config
 const heading = {
   fontFamily: 'heading',
   lineHeight: 'heading',
   fontWeight: 'heading',
+  mt: 5,
+  mb: 1,
+  p: 0,
+};
+
+const colors = {
+  text: '#00293c',
+  background: '#fff',
+  secondary: '#c60000',
+  primary: '#fd974f',
+  muted: '#805a3b',
+  // Prism
+  accent: '#639',
+  gray: '#666',
 };
 
 export const base = {
@@ -13,7 +32,7 @@ export const base = {
     heading: 'inherit',
     monospace: '“IBM Plex Mono”, monospace',
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontSizes: [14, 16, 18, 20, 24, 32, 48, 64, 96],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -23,13 +42,7 @@ export const base = {
     body: 1.5,
     heading: 1.125,
   },
-  colors: {
-    text: '#00293c',
-    background: '#fff',
-    secondary: '#c60000',
-    primary: '#fd974f',
-    muted: '#805a3b',
-  },
+  colors,
   sizes: {
     container: 928,
   },
@@ -44,27 +57,27 @@ export const base = {
     },
     h1: {
       ...heading,
-      fontSize: 5,
+      fontSize: 6,
     },
     h2: {
       ...heading,
-      fontSize: 4,
+      fontSize: 5,
     },
     h3: {
       ...heading,
-      fontSize: 3,
+      fontSize: 4,
     },
     h4: {
       ...heading,
-      fontSize: 2,
+      fontSize: 3,
     },
     h5: {
       ...heading,
-      fontSize: 1,
+      fontSize: 2,
     },
     h6: {
       ...heading,
-      fontSize: 0,
+      fontSize: 1,
     },
     pre: {
       fontFamily: 'monospace',
@@ -72,6 +85,7 @@ export const base = {
       code: {
         color: 'inherit',
       },
+      ...prismPreset,
     },
     code: {
       fontFamily: 'monospace',
@@ -89,6 +103,21 @@ export const base = {
     td: {
       textAlign: 'left',
       borderBottomStyle: 'solid',
+    },
+    a: {
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
+    blockquote: {
+      backgroundColor: darken(0.05, colors.background),
+      borderLeftColor: 'primary',
+      borderLeftStyle: 'solid',
+      borderLeftWidth: 5,
+      margin: 0,
+      p: 1,
+      pl: 2,
     },
   },
 };

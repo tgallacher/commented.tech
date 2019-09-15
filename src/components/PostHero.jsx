@@ -3,8 +3,14 @@ import { jsx, Styled } from 'theme-ui';
 import React from 'react';
 import Image from 'gatsby-image';
 
-const PostHero = ({ credit, feature, expand = true, ...props }) => (
-  <React.Fragment>
+const PostHero = ({
+  credit,
+  feature,
+  expand = true,
+  wrapperProps,
+  ...props
+}) => (
+  <div {...wrapperProps}>
     <Image
       {...props}
       objectFit={expand ? 'contain' : undefined}
@@ -21,16 +27,28 @@ const PostHero = ({ credit, feature, expand = true, ...props }) => (
         mx: expand ? '-50vw' : undefined,
       }}
     />
-    <small
+    <Styled.p
       sx={{
         textAlign: 'center',
         display: 'block',
+        m: 0,
+        p: 0,
+        mt: 2,
+        color: 'muted',
+        fontSize: 0,
+        a: {
+          color: 'muted',
+          textDecoration: 'none',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        },
       }}
       dangerouslySetInnerHTML={{
         __html: credit,
       }}
     />
-  </React.Fragment>
+  </div>
 );
 
 export default PostHero;

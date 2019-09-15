@@ -1,19 +1,8 @@
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui';
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import {
-  position,
-  maxWidth,
-  display,
-  borders,
-  height,
-  space,
-  right,
-  width,
-  left,
-} from 'styled-system';
 
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
@@ -57,15 +46,6 @@ export const pageQuery = graphql`
   }
 `;
 
-const Header = styled.header`
-  ${space}
-`;
-
-const Footer = styled.footer`
-  ${space}
-  ${borders}
-`;
-
 const BlogPostTemplate = ({
   data: { mdx: post, site },
   location,
@@ -77,37 +57,48 @@ const BlogPostTemplate = ({
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
-      <article
-        css={css`
-          h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-            margin: 2em 0 0;
-          }
-        `}
-      >
-        <PostHero credit={post.frontmatter.hero.credit} fluid={heroImg} />
+      <article sx={{ position: 'relative' }}>
+        <PostHero
+          wrapperProps={{
+            sx: { mb: 5 },
+          }}
+          credit={post.frontmatter.hero.credit}
+          fluid={heroImg}
+        />
 
-        <Header mb={5}>
-          <h1>{post.frontmatter.title}</h1>
-          <PostMeta
-            readingTime={post.fields.readingTime.text}
-            postDate={post.frontmatter.date}
-            color="#757575"
-            as="p"
-          />
-        </Header>
+        <section
+          sx={{
+            backgroundColor: 'background',
+            position: 'absolute',
+            top: 0,
+            zIndex: 10,
+            p: 3,
+            pt: 4,
+          }}
+        >
+          <header sx={{ mb: 0 }}>
+            <Styled.h1 sx={{ mt: 1 }}>{post.frontmatter.title}</Styled.h1>
+            <PostMeta
+              sx={{
+                m: 0,
+                p: 0,
+              }}
+              readingTime={post.fields.readingTime.text}
+              postDate={post.frontmatter.date}
+              color="#757575"
+              as="p"
+            />
+          </header>
+        </section>
 
-        <MDXRenderer>{post.body}</MDXRenderer>
+        <MDXRenderer sx={{ mt: 4 }}>{post.body}</MDXRenderer>
 
         <Changelog commits={pageContext.changelog} />
 
-        <Footer mt={4} borderTop="1px solid #455a64">
+        <footer sx={{ mt: 4, borderTop: '1px solid #455a64' }}>
           <PostPagination pageContext={pageContext} />
           <Bio />
-        </Footer>
+        </footer>
       </article>
     </Layout>
   );
