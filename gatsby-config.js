@@ -10,10 +10,10 @@ module.exports = {
     siteUrl: SITE_URL,
   },
   plugins: [
-    'gatsby-plugin-twitter',
+    'gatsby-plugin-theme-ui',
+    // 'gatsby-plugin-twitter',
     'gatsby-plugin-changelog-context',
     'gatsby-plugin-remove-generator',
-    'gatsby-plugin-theme-ui',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -101,7 +101,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-emotion`,
-    `gatsby-plugin-feed`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
