@@ -1,6 +1,4 @@
 import { lighten, darken } from 'polished';
-import prismPreset from '@theme-ui/prism/presets/prism-okaidia';
-// import prism from '@theme-ui/prism/presets/theme-ui'
 
 // common heading config
 const heading = {
@@ -85,7 +83,6 @@ export const base = {
       code: {
         color: 'inherit',
       },
-      ...prismPreset,
     },
     code: {
       fontFamily: 'monospace',
