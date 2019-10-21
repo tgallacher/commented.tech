@@ -77,7 +77,7 @@
     "polished": "^3.4.1",
     "prettier": "^1.14.2",
     "prismjs": "^1.15.0",
-    "styled-system": "^4.1.0"
+    "styled-system": "^5.x.x"
   },
   "keywords": [
     "gatsby"
