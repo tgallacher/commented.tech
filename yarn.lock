@@ -5893,9 +5893,9 @@ gatsby-page-utils@^0.0.27:
     slash "^3.0.0"
 
 gatsby-plugin-changelog-context@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-changelog-context/-/gatsby-plugin-changelog-context-1.0.2.tgz#82bfd21a7c81695d409a29e3b434cbb4f54e9208"
-  integrity sha512-yN7NjFi8iWaeMZIJ3YFBEc5YmppBJUU4HN2qjaPgFWLORYoKLKQ+VlxqA/eLbNrqjvdcWm/0iQgd8AErTyX9KA==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-changelog-context/-/gatsby-plugin-changelog-context-1.1.0.tgz#95eece877b835a2208446d8827ae5585567b2311"
+  integrity sha512-tmNPdWBwBFkldoY2wCbHCQsxDTwbryK013eM/EdKYLP6EoJ5JUZ3RbGQtRoue647Fow/qDn864Wroj4DqEVWgw==
   dependencies:
     simple-git "^1.126.0"
 
@@ -9413,11 +9413,6 @@ moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
-
-momentjs@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/momentjs/-/momentjs-2.0.0.tgz#73df904b4fa418f6e3c605e831cef6ed5518ebd4"
-  integrity sha1-c9+QS0+kGPbjxgXoMc727VUY69Q=
 
 move-concurrently@^1.0.1:
   version "1.0.1"
