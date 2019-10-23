@@ -9,7 +9,7 @@ const Changelog = ({ commits = [] }) => (
 
     {commits.map(({ hash, date, message }) => (
       <Styled.p sx={{ m: 0, fontSize: 2, fontFamily: 'monospace' }} key={hash}>
-        {moment(date).format('(ddd) Do MMM')}: {message}
+        {moment(date).format('Do MMM YYYY')} -- {message}
       </Styled.p>
     ))}
   </section>
