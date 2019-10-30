@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { space } from 'styled-system';
 
-const Header = ({ location, title }) => (
+const Header = ({ title }) => (
   <header>
     <Styled.div
       sx={{

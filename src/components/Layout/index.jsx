@@ -6,17 +6,17 @@ import { Global } from '@emotion/core';
 
 import Footer from './Footer';
 import Header from './Header';
-import Container from './Container';
-import { gatsbyHighlight, root } from '../styles';
+import Container from '../Container';
+import { gatsbyHighlight, root } from '../../styles';
 
-function Layout({ children, ...props }) {
+function Layout({ children, title }) {
   return (
     <Styled.root>
       <Global styles={[root, gatsbyHighlight]} />
 
       <main>
         <Container>
-          <Header {...props} />
+          <Header title={title} />
           {children}
           <Footer />
         </Container>

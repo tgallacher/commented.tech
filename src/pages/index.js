@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
@@ -9,7 +9,7 @@ import SEO from 'components/SEO';
 import PostSummary from 'components/PostEntrySummary';
 import Container from 'components/Container';
 
-export const pageQuery = graphql`
+const pageQuery = graphql`
   query {
     site {
       siteMetadata {
@@ -43,11 +43,12 @@ export const pageQuery = graphql`
   }
 `;
 
-function BlogIndex({ data, location }) {
+function BlogIndex() {
+  const data = useStaticQuery(pageQuery);
   const posts = data.allMdx.nodes;
 
   return (
-    <Layout location={location} title={data.site.siteMetadata.title}>
+    <Layout title={data.site.siteMetadata.title}>
       <SEO title="" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
 
       <Bio />
