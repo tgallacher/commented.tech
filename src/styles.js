@@ -2,6 +2,19 @@ import { css } from '@emotion/core';
 import { lighten, darken } from 'polished';
 import theme from './gatsby-plugin-theme-ui';
 
+export const root = css`
+  a {
+    color: ${theme.colors.primary};
+
+    &:hover {
+      color: ${theme.colors.muted};
+    }
+
+    &:visted {
+      color: ${theme.colors.secondary};
+    }
+  }
+`;
 /**
  * Customise PrismJS syntax highlighting.
  */
