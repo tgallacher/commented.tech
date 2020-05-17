@@ -17,10 +17,12 @@
     "url": "https://github.com/tgallacher/commented.tech/issues"
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.4.1",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "^1.4.5",
     "@theme-ui/color": "^0.2.x",
     "@theme-ui/prism": "^0.2.x",
+    "emotion-theming": "^10.0.19",
     "gatsby": "^2.0.76",
     "gatsby-image": "^2.0.22",
     "gatsby-plugin-changelog-context": "^1.0.2",

@@ -10,15 +10,30 @@ const heading = {
   p: 0,
 };
 
+// const colors = {
+//   text: '#170A1C',
+//   background: '#ffffff',
+//   primary: '#228CDB',
+//   secondary: '#D14750',
+//   muted: '#86C0EB',
+//   // Prism
+//   accent: '#0B7189',
+//   gray: '#666',
+// };
 const colors = {
-  text: '#00293c',
-  background: '#fff',
-  secondary: '#c60000',
-  primary: '#fd974f',
-  muted: '#805a3b',
+  text: '#3E3445',
+  background: '#EFEDEB',
+  primary: '#C67E31',
+  secondary: '#AC3B24',
+  muted: '#B6A192',
   // Prism
-  accent: '#639',
+  accent: '#AC3B24',
   gray: '#666',
+  // states
+  success: '#6cab64',
+  warning: '#e99b2c',
+  danger: '#f44336',
+  info: '#3e3445',
 };
 
 export const base = {

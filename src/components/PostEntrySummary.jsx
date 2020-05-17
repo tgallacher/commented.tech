@@ -39,6 +39,7 @@ const ArticleSummary = ({ post }) => (
     </Styled.a>
 
     <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+
     <Styled.a
       as={Link}
       to={post.fields.slug}
