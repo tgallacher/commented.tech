@@ -1,5 +1,7 @@
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
@@ -7,35 +9,30 @@ import SEO from 'components/SEO';
 import PostSummary from 'components/PostEntrySummary';
 import Container from 'components/Container';
 
-export const pageQuery = graphql`
+const pageQuery = graphql`
   query {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 1000
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-            readingTime {
-              text
-            }
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+      nodes {
+        excerpt(pruneLength: 250)
+        fields {
+          slug
+          readingTime {
+            text
           }
-          frontmatter {
-            title
-            date(formatString: "Do MMM, YYYY")
-            hero {
-              img {
-                childImageSharp {
-                  fluid(maxHeight: 500, cropFocus: ENTROPY) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
+        }
+        frontmatter {
+          title
+          date(formatString: "Do MMM, YYYY")
+          hero {
+            img {
+              childImageSharp {
+                fluid(maxHeight: 500, cropFocus: ENTROPY) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -46,21 +43,27 @@ export const pageQuery = graphql`
   }
 `;
 
-function BlogIndex({ data, location }) {
-  const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMarkdownRemark.edges;
+function BlogIndex() {
+  const data = useStaticQuery(pageQuery);
+  const posts = data.allMdx.nodes;
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO
-        title="All posts"
-        keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-      />
+    <Layout title={data.site.siteMetadata.title}>
+      <SEO title="" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
 
       <Bio />
 
-      {posts.map(({ node }) => (
-        <PostSummary key={node.fields.slug} post={node} />
+      <section
+        sx={{
+          mx: [0, undefined, -5],
+          px: [0, undefined, 4],
+        }}
+      >
+        <PostSummary feature post={posts[0]} />
+      </section>
+
+      {posts.slice(1).map(post => (
+        <PostSummary key={post.fields.slug} post={post} />
       ))}
     </Layout>
   );

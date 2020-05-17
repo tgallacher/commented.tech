@@ -1,34 +1,17 @@
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui';
 import React from 'react';
-import styled from '@emotion/styled';
-import { space, display, color } from 'styled-system';
-import { css } from '@emotion/core';
 
-const Metadata = styled.small`
-  font-style: italic;
-  ${color}
-`;
-
-const Span = styled.span`
-  ${display}
-  ${space}
-`;
-
-const Icon = styled.i`
-  ${space}
-`;
-
-const PostMeta = ({ readingTime, postDate, color, as = 'small' }) => (
-  <Metadata as={as} color={color}>
-    <Icon className="fas fa-book-open" mr={1} />
-    <Span display="inline-block" mr={2}>
-      {readingTime}
-    </Span>
-    &#9679;
-    <Span display="inline-block" mx={2}>
-      <Icon className="far fa-clock" mr={1} />
+const PostMeta = ({ readingTime, postDate, color, as = 'small', ...props }) => (
+  <Styled.p as={as} sx={{ color, fontStyle: 'italic' }} {...props}>
+    <span sx={{ display: 'inline-block', mr: 3 }}>
+      <i className="far fa-clock" sx={{ mr: 1 }} />
       {postDate}
-    </Span>
-  </Metadata>
+    </span>
+    &#9679;
+    <i className="fas fa-book-open" sx={{ ml: 3 }} />
+    <span sx={{ display: 'inline-block', mx: 2 }}>{readingTime}</span>
+  </Styled.p>
 );
 
 export default PostMeta;

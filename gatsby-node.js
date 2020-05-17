@@ -8,7 +8,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode });
 
     createNodeField({
@@ -28,40 +28,35 @@ const createPages = async ({ graphql, actions: { createPage } }) => {
 
   const { data, errors } = await graphql(`
     {
-      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-        edges {
-          node {
-            fileAbsolutePath
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
+      allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+        nodes {
+          fileAbsolutePath
+          fields {
+            slug
+          }
+          frontmatter {
+            title
           }
         }
       }
     }
   `);
 
-  if (errors) {
-    throw errors;
-  }
+  if (errors) throw errors;
 
-  // Create blog posts pages.
-  const posts = data.allMarkdownRemark.edges;
+  const posts = data.allMdx.nodes;
 
   posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-    const next = index === 0 ? null : posts[index - 1].node;
+    const previous = index === posts.length - 1 ? null : posts[index + 1];
+    const next = index === 0 ? null : posts[index - 1];
 
     createPage({
-      path: post.node.fields.slug,
+      path: post.fields.slug,
       component: blogPostTemplate,
       context: {
-        slug: post.node.fields.slug,
+        slug: post.fields.slug,
         // required for [gatsby-plugin-changelog-context]
-        fileAbsolutePath: post.node.fileAbsolutePath,
+        fileAbsolutePath: post.fileAbsolutePath,
         previous,
         next,
       },
