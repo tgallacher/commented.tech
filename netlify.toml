@@ -1,0 +1,16 @@
+# This site has now been moved over to `tom-gallacher.co.uk`
+# Note:
+# We're using the toml file as it can run from the repo root
+#
+
+# Redirect articles to their new home
+[[redirects]]
+  from = "/*"
+  to = "https://tom-gallacher.co.uk/articles/:splat"
+  status = 301
+
+# Redirect the home page
+[[redirects]]
+  from = "/"
+  to = "https://tom-gallacher.co.uk/"
+  status = 301
