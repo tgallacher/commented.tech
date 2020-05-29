@@ -1,0 +1,7 @@
+# This site has now been moved over to `tom-gallacher.co.uk`
+
+# Redirect articles to their new home
+/*    https://tom-gallacher.co.uk/articles/:splat     301
+
+# Redirect the home page
+/     https://tom-gallacher.co.uk                     301
